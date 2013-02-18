@@ -1,0 +1,8 @@
+{
+    "name": "paulocarvalhodesign/cms_core",
+    
+    "require": {
+       "paulocarvalhodesign/cms_core": "dev-master"
+    }
+}
+
