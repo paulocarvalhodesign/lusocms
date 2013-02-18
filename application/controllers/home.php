@@ -44,9 +44,14 @@ class Home_Controller extends Base_Controller {
 	   $block_assets     = CMS::set_block_assets($page);
 	   $core_js_assets   = CMS::set_core_js_assets();
 	   $agent            = Agent::browser();
-	   $lang 			 = Config::get('language');
+	  
+	   $settings  = CMS::set_settings();
+		 
+		 foreach($settings as $setting)
+			Config::set($setting->name, $setting->value);
+	   		Config::set('application.language', Config::get('language'));
 
- 		
+ 		$lang 			 = Config::get('language');
  		// let's prepare the view and get the correct theme and pagetype 
 		$view =  View::make('themes.'.$theme->name.'.'.$page->pagetype.'')	
 		->with('agent', $agent)

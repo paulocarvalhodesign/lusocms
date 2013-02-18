@@ -167,6 +167,10 @@ static function Insert_db(){
       'name'    => 'verify',
       'value'     => 'true'
     )); 
+    DB::table('settings')->insert(array( 
+      'name'    => 'language',
+      'value'     => 'en'
+    )); 
     Schema::create('analytics', function($table) {
       $table->increments('id');
       $table->string('username', 128);
