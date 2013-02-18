@@ -225,7 +225,7 @@ class Pages_Controller extends Dashboard_Controller {
         $id =  $id;
         $page = Page::find($id);
         $theme = DB::table('themes')->where_active('1')->first(); 
-        $dir = path('root').'cms_user/themes/views/themes/'.$theme->name.'/'; 
+        $dir = path('root').'cms_core/themes/views/themes/'.$theme->name.'/'; 
         $page_types = Page::pagetypes($dir);
 
        foreach($page_types as $key=>$value)
