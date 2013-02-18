@@ -11,4 +11,4 @@
  * @link      https://github.com/benedmunds/Laravel-Composer
  */
 
-require path('root').'cms_core/vendor/autoload.php';
+require path('root').'cms_core/autoload.php';
