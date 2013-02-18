@@ -15,6 +15,7 @@
 
 ##Quick Install
 
-- Unzip and move all contents inside luso-cms folder to your root folder.
+- Run composer update.
+- Got to your url(example.com).
 - Follow the setup.
 - Enjoy.
