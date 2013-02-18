@@ -20,6 +20,10 @@ return array(
 	*/
 
 	'analytics_inactive' => 'Activate your google analytics...',
+	'header_analytics'   => 'Analytics',
+	'header_messages'    => 'Messages',
+	'header_users'       => 'Users',
+	'header_settings'    => 'Settings'
 	
 
 );
