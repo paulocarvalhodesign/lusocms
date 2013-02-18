@@ -59,7 +59,7 @@ $array = array(
 	'flatten'    => array('auto' => true ),
 	'sitemap'    => array('auto' => true ),
 	'lessismore' => array('auto' => true ),
-	'gallery' 	 => array('auto' => true, 'handles' => 'gallery', 'location' => '../../../cms_core/bundles/gallery'),
+	'gallery' 	 => array('auto' => true, 'handles' => 'gallery', 'location' => '../../../cms_user/bundles/gallery'),
 );
 
 return $array;
