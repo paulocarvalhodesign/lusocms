@@ -39,7 +39,7 @@ $paths['root'] = $_SERVER['DOCUMENT_ROOT'];
 // --------------------------------------------------------------
 // The path to the Laravel directory.
 // --------------------------------------------------------------
-$paths['sys'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/vendor/laravel/laravel';
+$paths['sys'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/lusocms/laravel';
 
 // --------------------------------------------------------------
 // The path to the bundles directory.
@@ -59,7 +59,7 @@ $paths['public'] = 'public';
 // --------------------------------------------------------------
 // The path to the views directory.
 // --------------------------------------------------------------
-$paths['views'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/themes/views'; 
+$paths['views'] = $_SERVER['DOCUMENT_ROOT'].'/cms_user/themes/views'; 
 // --------------------------------------------------------------
 // The path to the user bundles.
 // --------------------------------------------------------------
