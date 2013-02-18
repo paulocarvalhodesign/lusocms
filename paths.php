@@ -39,7 +39,7 @@ $paths['root'] = $_SERVER['DOCUMENT_ROOT'];
 // --------------------------------------------------------------
 // The path to the Laravel directory.
 // --------------------------------------------------------------
-$paths['sys'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/lusocms/laravel';
+$paths['sys'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/lusocms/framework';
 
 // --------------------------------------------------------------
 // The path to the bundles directory.
