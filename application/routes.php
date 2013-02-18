@@ -241,7 +241,7 @@ Route::get('sitemap', function(){
               $new  = str_replace("%DATABASE%",$table,$new);
 
 
-              File::put(path('app').'config/database.php', $new);
+              File::put(path('root').'cms_config/config.php', $new);
 
 
 
