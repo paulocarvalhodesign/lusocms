@@ -25,7 +25,7 @@ if($block->core == 'true'){
 
 }elseif($block->core == 'false'){
 
-    include(path('root').'/cms_core/bundles/'.$block->block_name.'/views/add.blade.php');
+    include(path('root').'/cms_user/bundles/'.$block->block_name.'/views/add.blade.php');
 
 }
 

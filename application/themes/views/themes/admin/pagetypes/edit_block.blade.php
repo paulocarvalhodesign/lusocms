@@ -9,7 +9,7 @@ if($core == 'true'){
 
 }elseif($core == 'false'){
 
-   include(path('root').'/cms_core/bundles/'.$block_name.'/views/edit.blade.php');
+   include(path('root').'/cms_user/bundles/'.$block_name.'/views/edit.blade.php');
 
 }
 
