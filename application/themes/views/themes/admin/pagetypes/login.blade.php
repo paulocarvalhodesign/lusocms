@@ -13,7 +13,7 @@
     {{ HTML::style('themes/admin/css/login.css') }}
  
 </head>
-<div class="preloader"><img src="<?php echo url('public/images/360.gif');?>"/></div>
+
 <body class="login_page sign_up">
     <div class="container">
       
@@ -21,7 +21,7 @@
         <div class="span12">
         <div class="span4"></div>  
         <div class="span4">
-          <center><h3 class="cms_logo"><img width="25" src="<?php echo url('public/global/img/icon.png');?>"> LUSO CMS</h3></center>
+          <center><h3 class="cms_logo"><img width="25" src="<?php echo url('cms_core/public/global/img/icon.png');?>"> LUSO CMS</h3></center>
         </div>  
          <div class="span4"></div>  
         </div>

@@ -304,7 +304,7 @@ class HTML {
 	{
 		$attributes['alt'] = $alt;
 
-		return '<img src="'.URL::to_asset($url).'"'.static::attributes($attributes).'>';
+		return '<img src="'.URL::to($url).'"'.static::attributes($attributes).'>';
 	}
 
 	/**

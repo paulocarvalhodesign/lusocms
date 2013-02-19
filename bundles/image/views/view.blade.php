@@ -4,7 +4,7 @@
 <?php
 
  $url = str_replace("public/", "", $block->url );	
- 
+ $url = $block->url ;	
  $attributes = array(
 
  	'width' => $block->width,
@@ -32,7 +32,8 @@
 
 <?php
 
- $url = str_replace("public/", "", $block->url );	
+ $url = str_replace("public/", "", $block->url );
+ $url = $block->url ;	
  $attributes = array(
 
  	'width' => $block->width,

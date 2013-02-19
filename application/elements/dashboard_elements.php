@@ -14,7 +14,7 @@
 <div class="span12">
 	<div class="span6">
 
-   <h3 class="cms_logo"><img width="25" src="<?php echo url('public/global/img/icon.png');?>"> LUSO CMS</h3>
+   <h3 class="cms_logo"><img width="25" src="<?php echo url('cms_core/public/global/img/icon.png');?>"> LUSO CMS</h3>
 	</div>
     <div class="span6">
 

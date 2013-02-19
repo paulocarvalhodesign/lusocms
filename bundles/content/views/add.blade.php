@@ -1,5 +1,5 @@
  
-<?php $files = Files::all();?>
+<?php $files = Files::all();    $ckeditor_id = rand(5,5000);?>
 <div id="images">
  <button class="btn btn-primary"  id="close_image_manager">X</button>
  <ul class="filemanager" id="uItem" >
@@ -11,7 +11,7 @@
   
                        <img class="tt" rel="tooltip"
                         data-placement="bottom" 
-                        data-original-title="<?php echo $file->filename;?>"
+                        data-original-title="Drag me"
                         src="<?php echo $file->location;?>"/>
       
                         <span><?php echo $file->location;?></span>
@@ -25,7 +25,7 @@
 
 
 
-            
+          
 <?php echo Form::open('content/add', '',array('class'=>'content_form', 'id'=>$area.'-content')) ?>
 
 <?php echo Form::hidden('page_id', $page_id); ?>
@@ -34,7 +34,7 @@
 
 <?php echo Form::hidden('area', $area); ?>
 
-<?php echo Form::textarea('content', '', array('id'=>'editor', 'class'=>'ckeditor')); ?>
+<?php echo Form::textarea('content', '', array('id'=>'editor-'.$area.$ckeditor_id, 'class'=>'ckeditor')); ?>
 
 <div class="row-fluid"> 
  <div class="span12">
@@ -93,11 +93,11 @@ if(!empty($dir))
 
 <script type="text/javascript">
 
+      
 
-
-      CKEDITOR.replace( 'editor', {
+      CKEDITOR.replace( 'editor-<?php echo $area.$ckeditor_id;?>', {
           extraPlugins : 'internpage',
-          removePlugins : 'devtools',
+          removePlugins :'devtools',
           toolbar :
           [
             ['Source','oembed','-', 'Bold', 'Italic', 'TextColor', 'BGColor', '-', 'NumberedList', 'BulletedList' ,'-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyFull', '-', 'Link', 'Unlink', "Anchor", 'Image','HorizontalRule','Styles','Format','Font','FontSize' ]
@@ -105,6 +105,7 @@ if(!empty($dir))
 
 
       });
+
 
 
 
@@ -158,8 +159,12 @@ if(!empty($dir))
 
       });  
 
+
+$('.modal').on('hidden', function () {
+  
+ window.location.reload();
+});
      
-    
 
    
 

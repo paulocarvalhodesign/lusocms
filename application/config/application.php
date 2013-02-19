@@ -44,7 +44,7 @@ return array(
 	|
 	*/
 
-	'asset_url' => $base.'public',
+	'asset_url' => $base.'cms_core/public',
 
 	/*
 	|--------------------------------------------------------------------------

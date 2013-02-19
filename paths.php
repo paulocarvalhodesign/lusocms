@@ -54,7 +54,7 @@ $paths['storage'] = 'storage';
 // --------------------------------------------------------------
 // The path to the public directory.
 // --------------------------------------------------------------
-$paths['public'] = 'public';
+$paths['public'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/public/';
 
 // --------------------------------------------------------------
 // The path to the views directory.

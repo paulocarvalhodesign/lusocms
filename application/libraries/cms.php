@@ -248,6 +248,7 @@ class Cms
 
 	   if(Config::get('edit_mode') == 'true'){
 	   Asset::container('plugins')->add('ckeditor','ckeditor/ckeditor.js');
+	   Asset::container('plugins')->add('ckeditor_config','ckeditor/config.js');
 	   Asset::container('core_js')->add('formsValidation','global/js/jquery.validate.min.js', '' ,array('async', 'defer'));
 	  
 	   Asset::container('jquery-ui')->add('jquery-ui','jquery-ui/js/jquery-ui-1.9.0.custom.min.js', '' ,array('async', 'defer'));

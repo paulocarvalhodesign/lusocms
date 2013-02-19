@@ -6,6 +6,7 @@ $theme 	= CMS::set_theme();
 return array(
             'directories' => array(
             	 $_SERVER['DOCUMENT_ROOT'] . '/public/themes/'.$theme->name.'/less' => $_SERVER['DOCUMENT_ROOT'] . '/public/themes/'.$theme->name.'/css',
+                 $_SERVER['DOCUMENT_ROOT'] . '/public/themes/'.$theme->name.'/less' => $_SERVER['DOCUMENT_ROOT'] . '/public/themes/'.$theme->name.'/css'
             ),
             
             'files' => array(

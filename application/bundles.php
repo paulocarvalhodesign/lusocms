@@ -60,6 +60,7 @@ $array = array(
 	'sitemap'    => array('auto' => true ),
 	'lessismore' => array('auto' => true ),
 	'gallery' 	 => array('auto' => true, 'handles' => 'gallery', 'location' => '../../../cms_user/bundles/gallery'),
+	'galleria' 	 => array('auto' => true, 'handles' => 'galleria', 'location' => '../../../cms_user/bundles/galleria'),
 );
 
 return $array;

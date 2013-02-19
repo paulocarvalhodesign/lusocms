@@ -194,6 +194,7 @@ class Files_Controller extends Dashboard_Controller {
         $extension = strtolower ( $ext );
         $file  = trim($input['file']['name']);
         $filename = str_replace(" ","_", $file);
+        $redirect   = Input::get('location');
         
         if(
 
@@ -357,7 +358,7 @@ class Files_Controller extends Dashboard_Controller {
           
 
 
-        return Redirect::to('files');
+        return Redirect::to($redirect);
 
     }
 
@@ -483,7 +484,7 @@ class Files_Controller extends Dashboard_Controller {
          $extension =  strtolower ( $ext );
          $file = trim($input['file']['name']);
          $filename = str_replace(" ","_", $file);
-
+         $redirect   = Input::get('location');
 
          try
          
@@ -661,7 +662,7 @@ class Files_Controller extends Dashboard_Controller {
 
           }
 
-         return Redirect::to('files');
+         return Redirect::to($redirect);
         
 
        }

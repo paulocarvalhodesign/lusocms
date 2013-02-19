@@ -46,6 +46,8 @@ class Home_Controller extends Base_Controller {
 	   $agent            = Agent::browser();
 	  
 	   $settings  = CMS::set_settings();
+
+	   Config::set('page_url', $page->route);
 		 
 		 foreach($settings as $setting)
 			Config::set($setting->name, $setting->value);
