@@ -18,11 +18,11 @@ return array(
 	'extensions'      => ' Extensions & Blocks',
 	'pages'			  => ' Pages',
 	'files'			  => ' Files',
-	'forms'			  => ' Froms',	
+	'forms'			  => ' Forms',	
 	'users'			  => ' Users',
 	'settings'		  => ' Settings',	
 	'frontend'		  => 'Website',
-	'frontend_bubble'		  => 'Visit site'	
+	'frontend_bubble' => 'Visit site'	
 	
 
 );
