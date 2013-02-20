@@ -24,7 +24,7 @@
 */
 
 ini_set('display_errors', 'off');
-ini_set('memory_limit', '512M');
+ini_set('memory_limit', '1024M');
 
 define('ADMIN_THEME_PATH' ,path('app').'themes/views/themes/admin/pagetypes/');
 define('USER_BUNDLE_PATH' ,$_SERVER['DOCUMENT_ROOT'].'/cms_user/bundles/');

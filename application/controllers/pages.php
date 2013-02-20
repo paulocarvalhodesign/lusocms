@@ -160,6 +160,115 @@ class Pages_Controller extends Dashboard_Controller {
       }
     }
     
+    public function get_composer() {
+     $theme = DB::table('themes')->where_active('1')->first(); 
+     $dir = path('root').'cms_user/themes/views/themes/'.$theme->name.'/';    
+     $page_types = Page::pagetypes($dir);
+
+     foreach($page_types as $key=>$value)
+        $pagetypes[$value] =  $value;
+
+     $pages = Page::all();
+     foreach ($pages as $page) {
+         $parents[$page->id] = $page->name; 
+     }
+    
+     $view = View::make('path: '.ADMIN_THEME_PATH.'pages/new.blade.php')
+        ->with('user',Auth::user())
+        ->with('pagetypes',$pagetypes)
+        ->with('parents',$parents);
+
+      return $view;
+ 
+    }
+
+    
+    public function post_composer() {
+        
+    $input = Input::all();
+
+    $rules = array(
+    'title'  => 'required|max:255',
+    'url'  => 'required|max:255|unique:pages,url',
+    'pagetype'  => 'required|max:255',
+    'parent_id'  => 'required|max:255',
+
+    );
+
+    $validation = Validator::make($input, $rules);
+
+        if ($validation->fails())
+        {
+             return Redirect::to('pages/new')->with_errors($validation);
+        
+        }
+        else
+
+    {
+
+    $page = new page();
+
+    $page->title = Input::get('title'); 
+    $page->name = Input::get('url');  
+    $page->url = Input::get('url'); 
+    $page->tags = Input::get('tags'); 
+    $page->keywords = Input::get('keywords'); 
+    $page->pagetype = Input::get('pagetype'); 
+   
+    if(Input::get('parent_id') == '1'){
+
+         $page->parent_id = '0';    
+    }else{
+
+         $page->parent_id = Input::get('parent_id'); 
+     }
+    $page->description = Input::get('description'); 
+    
+
+    if(Input::get('exclude_from_sitemap') == null)
+         $page->exclude_from_sitemap = '0';
+         else   
+    $page->exclude_from_sitemap = Input::get('exclude_from_sitemap');
+
+
+     if(Input::get('exclude_from_navigation') == null) 
+          $page->exclude_from_navigation = '0';
+          else            
+    $page->exclude_from_navigation = Input::get('exclude_from_navigation'); 
+    
+     if(Input::get('exclude_from_pagelist') == null) 
+          $page->exclude_from_pagelist = '0';
+          else  
+    $page->exclude_from_pagelist = Input::get('exclude_from_pagelist'); 
+
+    $route = Page::find(Input::get('parent_id'));
+    
+
+    $page->route = $route->route.'/'.Input::get('url'); 
+
+
+    $page->save();
+
+
+    $pages = Page::all();
+
+                $links[] = '<?php ';
+              
+
+                foreach($pages as $p)
+                
+                $links[] ='$route["'.$p->title.'"] = "'.$p->route.'";';
+
+
+
+                File::put(path('root').'public/ckeditor/plugins/internpage/routes.php', $links);  
+
+
+
+    return Redirect::to('pages');
+ 
+      }
+    }
 
     public function post_save_page_atributes(){
 

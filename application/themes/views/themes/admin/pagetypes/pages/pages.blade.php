@@ -41,6 +41,12 @@
             <i class="icon-file"></i> <?php echo Lang::line('toolbar.pages');?> 
 
              <ul class="inner_navigation">
+              <?php if($user->canCreate() == 'true'):?>
+              <li>
+               
+                <a href="{{url('pages/composer')}}"> <i class="icon icon-pencil"></i> Composer</a>
+               
+              </li>
                <li>
                
                 <a href="{{url('pages/new')}}"> <i class="icon icon-plus"></i> Add New Page</a>
@@ -50,6 +56,15 @@
                 <a href="{{url('pages/attributes')}}"> <i class="icon icon-asterisk"></i> Page Atributes</a>
                  
                </li>
+             <?php else :?>
+
+              <li>
+               
+                <a href="{{url('pages/composer')}}"> <i class="icon icon-pencil"></i> Composer</a>
+               
+              </li>
+
+           <?php endif;?>
             </ul> 
 
 

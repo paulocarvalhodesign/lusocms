@@ -24,9 +24,6 @@
  &nbsp;
 <?php echo $avatar;?>
 </div>
-
-<?php if($user->canCreate() == 'true'):?>
-
 <?php $all_sets = DB::table('sets')->get();
 
      if($all_sets){
@@ -38,11 +35,14 @@
      }?>
 
 
+
+
+
 <ul class="cms_toolbar_options">
       <li><i class="icon-th-large icon-white"></i> 
         <?php echo HTML::link('admin', Lang::line('toolbar.dashboard')); ?>
       </li>
-
+<?php if($user->canCreate() == 'true'):?>
       <?php if(Config::get('edit_mode') == 'false' || Config::get('edit_mode') == ''):?>
       
       <li><i class="icon-pencil icon-white"></i> <?php echo HTML::link('edit/'.Config::get('page_id').'', Lang::line('toolbar.edit_mode'), array('class'=>'edit-trigger')); ?></li>
@@ -51,7 +51,7 @@
 
         <i class="icon-certificate icon-white"></i>
 
-        <?php echo HTML::link('#', Lang::line('toolbar.page')); ?>
+        <?php echo HTML::link('pages', Lang::line('toolbar.page')); ?>
         <ul class="media_options">
            <li><i class="icon-certificate icon-white"></i> <?php echo HTML::link('pages/manage/'.Config::get('page_id').'', Lang::line('toolbar.page_properties')); ?></li>
            <li><i class="icon-plus-sign icon-white"></i><?php echo HTML::link('pages/new', Lang::line('toolbar.add_page')); ?></li>
@@ -62,7 +62,7 @@
      
 
        <li><i class="icon-folder-open icon-white"></i>
-      <?php echo HTML::link('#', Lang::line('toolbar.add_media')); ?>
+      <?php echo HTML::link('files', Lang::line('toolbar.add_media')); ?>
       <ul class="media_options">
       <li>
         <a href="#" type="button" class="" onclick="$('#upload_modal').modal({backdrop: 'static'});"><i class="icon-plus-sign icon"></i> Upload</a>

@@ -85,8 +85,9 @@
               <th>Type</th>
              <th>Sets</th>
              <th>Properties</th>
-          
+           <?php if($user->canCreate() == 'true'):?>
              <th>Delete</th>
+            <?php endif;?> 
              </tr>
              </thead>
              <tbody>
@@ -184,9 +185,9 @@
            
            
               
-              
+             <?php if($user->canCreate() == 'true'):?>  
              <td><span class="btn btn-danger"><a href="{{ url('files/delete_file/'.$file->id) }}"> Delete</a></span></td>
-             
+             <?php endif;?>
            
             
              </tr>

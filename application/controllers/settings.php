@@ -22,9 +22,35 @@ class Settings_Controller extends Dashboard_Controller {
 
     public $restful = true;
     
+    public function __construct(){
+
+        $user = Auth::user();
+        $user_role = db::table('role_user')->where_role_id($user->id)->first(); 
+        $this->permitions = Permitions::administrator($user_role->role_id);
+        Config::set('permitions', $this->permitions); 
+        
+     }
+
 
     public function get_index() {
         
+     if(!$this->permitions){
+
+    Session::flash('info', '
+                  <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <span class="error">You dont haver suficient permitions to access that page.!</span>
+                  </div>
+
+
+
+        ');
+    
+      return Redirect::to('admin');
+        }
+    else{
+
+
      $mmode = DB::table('settings')->where_name('maintenance-mode')->get();
      $name = DB::table('settings')->where_name('site_name')->get();
      $error_level = DB::table('settings')->where_name('error_level')->get();
@@ -74,7 +100,7 @@ class Settings_Controller extends Dashboard_Controller {
         ->with('themes',$allthemes);
 
       return $view;
- 
+      }
     }
 
 

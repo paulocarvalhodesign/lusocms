@@ -34,12 +34,13 @@ $environments = array(
 // --------------------------------------------------------------
 $paths['app'] = 'application';
 
+
 $paths['root'] = $_SERVER['DOCUMENT_ROOT'];
 
 // --------------------------------------------------------------
 // The path to the Laravel directory.
 // --------------------------------------------------------------
-$paths['sys'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/lusocms/framework';
+$paths['sys'] = '../../cms_core/lusocms/framework';
 
 // --------------------------------------------------------------
 // The path to the bundles directory.
@@ -54,16 +55,16 @@ $paths['storage'] = 'storage';
 // --------------------------------------------------------------
 // The path to the public directory.
 // --------------------------------------------------------------
-$paths['public'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/public/';
+$paths['public'] = '../../cms_core/public/';
 
 // --------------------------------------------------------------
 // The path to the views directory.
 // --------------------------------------------------------------
-$paths['views'] = $_SERVER['DOCUMENT_ROOT'].'/cms_user/themes/views'; 
+$paths['views'] ='../../cms_user/themes/views'; 
 // --------------------------------------------------------------
 // The path to the user bundles.
 // --------------------------------------------------------------
-$paths['user_bundles'] = $_SERVER['DOCUMENT_ROOT'].'/cms_core/bundles/'; 
+$paths['user_bundles'] = '../../cms_core/bundles/'; 
 // *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 // END OF USER CONFIGURATION. HERE BE DRAGONS!
 // *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
@@ -119,6 +120,10 @@ function path($path)
  * @param  string  $value
  * @return void
  */
+function set_path($path, $value)
+{
+	$GLOBALS['laravel_paths'][$path] = $value;
+} */
 function set_path($path, $value)
 {
 	$GLOBALS['laravel_paths'][$path] = $value;

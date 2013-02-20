@@ -289,6 +289,9 @@ class Files_Controller extends Dashboard_Controller {
             elseif($extension == 'pdf'){
                  $thumb = 'pdf.png';
             }
+            elseif($extension == 'xml' || $extension == 'txt'){
+                 $thumb = 'text.png';
+            }
 
 
 
@@ -603,7 +606,10 @@ class Files_Controller extends Dashboard_Controller {
                             }
                             elseif($extension == 'pdf'){
                                  $thumb = 'pdf.png';
-                            } 
+                            }
+                            elseif($extension == 'xml' || $extension == 'txt'){
+                            $thumb = 'text.png';
+                            }
 
                     Files::create(array(
                       'filename' => $filename,

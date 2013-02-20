@@ -82,6 +82,8 @@
     Route::get('pages', array('uses'=>'pages@index'));
     Route::get('pages/new', array('uses'=>'pages@new'));
     Route::post('pages/new', array('uses'=>'pages@new'));
+     Route::get('pages/composer', array('uses'=>'pages@composer'));
+    Route::post('pages/composer', array('uses'=>'pages@composer'));
     Route::post('pages/update_page', array('uses'=>'pages@update_page'));
     Route::get('pages/attributes', array('uses'=>'pages@attributes'));
     Route::post('pages/save_page_atributes', array('uses'=>'pages@save_page_atributes'));
