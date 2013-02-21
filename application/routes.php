@@ -432,6 +432,7 @@ Route::get('sitemap', function(){
 
               include(path('root').'cms_config/user.php');   
               include(path('root').'cms_config/site.php');       
+              include(path('root').'cms_config/site_name.php'); 
 
                 
                 
@@ -452,6 +453,7 @@ Route::get('sitemap', function(){
 
                 
                 $verify[] = ' ';
+                File::put(path('root').'cms_config/site.php', $verify);
                 File::put(path('root').'cms_config/site_name.php', $verify);
                 File::put(path('root').'cms_config/user_details.php', $verify);
 

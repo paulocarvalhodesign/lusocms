@@ -42,4 +42,4 @@ $('.delete').click(function(event) {
 
 
 
-<?php include(path('root').'cms_config/tracking_code.php');?> 
+<?php include(path('root').'cms_config/analytics_tracking_code.php');?> 
