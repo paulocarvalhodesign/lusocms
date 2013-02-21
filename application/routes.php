@@ -325,7 +325,7 @@ Route::get('sitemap', function(){
                  $data[] ='$password='.$a.$password.$a.';'; 
                 
                 
-                File::put(path('root').'/cms_config/user_details.php', $data);   
+                File::put(path('root').'/cms_config/user.php', $data);   
 
 
 
@@ -430,8 +430,8 @@ Route::get('sitemap', function(){
               Install::insert_db();
 
 
-              include(path('root').'cms_config/user_details.php');   
-              include(path('root').'cms_config/site_name.php');       
+              include(path('root').'cms_config/user.php');   
+              include(path('root').'cms_config/site.php');       
 
                 
                 
@@ -451,9 +451,9 @@ Route::get('sitemap', function(){
                 )); 
 
                 
-
-                File::delete(path('root').'cms_config/site_name.php');
-                File::delete(path('root').'cms_config/user_details.php');
+                $verify[] = ' ';
+                File::put(path('root').'cms_config/site_name.php', $verify);
+                File::put(path('root').'cms_config/user_details.php', $verify);
 
 
 
