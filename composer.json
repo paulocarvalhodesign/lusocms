@@ -1,8 +1,8 @@
 {
-    "name": "lusocms",
+    "name": "paulocarvalhodesign/lusocms",
     
     "require": {
-       "lusocms": "dev-master"
+       "paulocarvalhodesign/lusocms": "dev-master"
     }
 }
 
