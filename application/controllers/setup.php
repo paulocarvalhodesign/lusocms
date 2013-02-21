@@ -27,8 +27,8 @@ class Setup_Controller extends Base_Controller {
    
      $folder = path('root').'cms_config';
      if(is_writable($folder)) 
-     File::put(path('root').'cms_config/site.php', '');
-     File::put(path('root').'cms_config/user.php', '');
+     File::put(path('root').'cms_config/site_name.php', '');
+     File::put(path('root').'cms_config/user_details.php', '');
      File::put(path('root').'cms_config/tracking_code.php', '');
      
       

@@ -327,6 +327,18 @@ static function Insert_db(){
       'can_write'     => 'true',
       'can_delete'     => 'true'
     )); 
+    DB::table('roles')->insert(array( 
+      'name'    => 'editor',
+      'can_create'     => 'true',
+      'can_write'     => 'true',
+      'can_delete'     => 'false'
+    )); 
+    DB::table('roles')->insert(array( 
+      'name'    => 'subscriber',
+      'can_create'     => 'false',
+      'can_write'     => 'false',
+      'can_delete'     => 'false'
+    )); 
     DB::table('role_user')->insert(array( 
      
       'user_id'     => '1',

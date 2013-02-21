@@ -59,6 +59,10 @@ class Users_Controller extends Dashboard_Controller {
 
             $new_role = Input::get('role');
 
+            if(empty($new_role))
+
+              $new_role ='3';
+
             $user = new User();
                 
             $user->avatar = $avatar;

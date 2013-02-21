@@ -281,6 +281,7 @@ Route::get('sitemap', function(){
         $username = Input::get('username');
         $password = Input::get('password');
         
+        
         $a ="'";
 
          $rules = array(
@@ -311,7 +312,7 @@ Route::get('sitemap', function(){
   
 
             Session::flash('message', $message);     
-            return Redirect::to('setup/user_setup');
+        
         
         }else{
 
@@ -324,13 +325,14 @@ Route::get('sitemap', function(){
                  $data[] ='$password='.$a.$password.$a.';'; 
                 
                 
-                File::put(path('root').'cms_config/user.php', $data);   
+                File::put(path('root').'/cms_config/user_details.php', $data);   
 
 
 
 
-        return Redirect::to('setup/app_setup');
-        }
+       
+      }  
+       return Redirect::to('setup/app_setup');
     });
    
     Route::get('setup/app_setup',function(){
@@ -386,7 +388,7 @@ Route::get('sitemap', function(){
                
                 
                 
-                File::put(path('root').'cms_config/site.php', $data);   
+                File::put(path('root').'cms_config/site_name.php', $data);   
 
 
 
@@ -404,7 +406,7 @@ Route::get('sitemap', function(){
     
     Route::get('setup/done',function(){
 
-      //$view = View::make('themes.admin.pagetypes.install.done');
+      
       $view = View::make('path: '.ADMIN_THEME_PATH.'install/done.blade.php');
 
       return $view;
@@ -412,7 +414,7 @@ Route::get('sitemap', function(){
     });
     Route::get('setup/error',function(){
 
-      //$view = View::make('themes.admin.pagetypes.install.app');
+     
       $view = View::make('path: '.ADMIN_THEME_PATH.'install/app.blade.php');
 
       return $view;
@@ -428,8 +430,8 @@ Route::get('sitemap', function(){
               Install::insert_db();
 
 
-              include(path('root').'cms_config/user.php');   
-              include(path('root').'cms_config/site.php');       
+              include(path('root').'cms_config/user_details.php');   
+              include(path('root').'cms_config/site_name.php');       
 
                 
                 
@@ -437,7 +439,7 @@ Route::get('sitemap', function(){
               
 
                 DB::table('themes')->insert(array(
-                  'name' => $theme,
+                  'name' => 'default',
                   'description' => 'Default theme',
                   'active' => '1'
                  )); 
@@ -450,8 +452,8 @@ Route::get('sitemap', function(){
 
                 
 
-                File::delete(path('root').'cms_config/site.php');
-                File::delete(path('root').'cms_config/user.php');
+                File::delete(path('root').'cms_config/site_name.php');
+                File::delete(path('root').'cms_config/user_details.php');
 
 
 
