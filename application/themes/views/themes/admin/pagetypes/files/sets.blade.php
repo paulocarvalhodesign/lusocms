@@ -79,13 +79,15 @@
              <tbody>
               
              @foreach($sets->results as $set)
-
+               @if($set->owner == $user->id || $user->isAdministrator())
                <tr>
                 <td><i class="icon-folder-open"></i> {{ $set->name }}</td>
                 <td><span class="btn btn-info"><a href="{{ url('files/manage_set/'.$set->id) }}"><i class="icon-wrench"></i> Manage Set</a></span></td>
+              
                 <td><span class="btn btn-danger"><a href="{{ url('files/delete_set/'.$set->id) }}"><i class="icon-minus"></i> Delete Set</a></span></td>
+               
                </tr>
-
+            @endif
           
                
              @endforeach

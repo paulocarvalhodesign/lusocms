@@ -76,6 +76,7 @@
            @else
 
             <div class="block">
+                
              <table class="table table-condensed table-bordered">
              <thead>
              <tr>
@@ -91,8 +92,9 @@
              </tr>
              </thead>
              <tbody>
-             @foreach($files->results as $file)
 
+             @foreach($files->results as $file)
+             @if($file->owner == $user->id || $user->isAdministrator())
 
              <div class="modal hide" id="set_modal-{{$file->id}}">
                 <div class="modal-header">
@@ -191,13 +193,13 @@
            
             
              </tr>
-             
+              @endif  
              @endforeach
-             
+               
              </tbody>
              </table>   
                 {{$files->links()}} 
-
+           
               @endif           
              </div>
            

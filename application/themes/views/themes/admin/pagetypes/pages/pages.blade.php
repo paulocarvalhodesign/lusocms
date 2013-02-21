@@ -47,6 +47,11 @@
                 <a href="{{url('pages/composer')}}"> <i class="icon icon-pencil"></i> Composer</a>
                
               </li>
+              <li>
+               
+                <a href="{{url('pages/composer_groups')}}"> <i class="icon icon-th-large"></i> Composer Groups</a>
+               
+              </li>
                <li>
                
                 <a href="{{url('pages/new')}}"> <i class="icon icon-plus"></i> Add New Page</a>

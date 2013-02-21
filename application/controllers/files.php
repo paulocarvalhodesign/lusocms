@@ -98,10 +98,11 @@ class Files_Controller extends Dashboard_Controller {
     public function post_sets() {
     
        $setname = Input::get('setname');
-
+       $user = Auth::user();
        Set::create(array(
 
-        'name' => $setname
+        'name' => $setname,
+        'owner' => $user->id
 
         ));
       
@@ -187,7 +188,7 @@ class Files_Controller extends Dashboard_Controller {
    
     public function post_upload() {
 
-
+        $user = Auth::user();
         $input     = Input::all();
         $setname   = Input::get('set'); 
         $ext       = File::extension($input['file']['name']);
@@ -236,6 +237,7 @@ class Files_Controller extends Dashboard_Controller {
           
            
           Files::create(array(
+          'owner'=> $user->id,  
           'title' => $input['title'],  
           'filename' => $input['file']['name'],
           'description' => $input['description'],
@@ -301,6 +303,7 @@ class Files_Controller extends Dashboard_Controller {
 
 
             Files::create(array(
+              'owner'=> $user->id,  
               'filename' => $input['file']['name'],
               'description' => $input['description'],
               'location' => 'public/filemanager/files/'.$filename,
@@ -479,7 +482,7 @@ class Files_Controller extends Dashboard_Controller {
        }
 
        public function post_multi_upload(){
-
+         $user = Auth::user();
          $input = Input::all();
          $set = Input::get('set');
          $setname = Input::get('set');
@@ -569,6 +572,7 @@ class Files_Controller extends Dashboard_Controller {
               copy($file, path('root').'public/filemanager/images/'.$filename);
                
                Files::create(array(
+                  'owner'=>$user->id,
                   'filename' => $filename,
                   'location' => 'public/filemanager/images/'.$filename,
                   'thumb_location' => 'public/filemanager/thumbs/images/'.$filename,
@@ -612,6 +616,7 @@ class Files_Controller extends Dashboard_Controller {
                             }
 
                     Files::create(array(
+                      'owner'=>$user->id,
                       'filename' => $filename,
                       'location' => 'public/filemanager/files/'.$filename,
                       'thumb_location' => 'public/global/file-types/'.$thumb,

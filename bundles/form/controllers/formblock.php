@@ -31,7 +31,19 @@ class Form_Formblock_Controller extends Base_Controller {
      */
     public $restful = true;
 
-    
+    public function __construct(){
+
+        $user = Auth::user();
+        if($user){
+        $user_role = db::table('role_user')->where_role_id($user->id)->first(); 
+        $this->permitions = Permitions::administrator($user_role->role_id);
+        Config::set('permitions', $this->permitions); 
+        $settings = DB::table('settings')->get();
+        foreach($settings as $setting)
+        Config::set($setting->name, $setting->value);
+        Config::set('application.language', Config::get('language'));
+        }
+     }
 
 
      
@@ -52,6 +64,7 @@ class Form_Formblock_Controller extends Base_Controller {
        
        $view = Block::template('form', $content->template);
 
+      
        return View::make($view)
        ->with('fields', $fields)
        ->with('id',$form_id)

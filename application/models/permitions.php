@@ -20,4 +20,14 @@ class Permitions
 		return null;	
 		}
 	}
+
+	public static function PageOwner($user_id, $page_id){
+
+		if($user_id == $page_id){
+		return true;
+		}
+		else{
+		return null;	
+		}
+	}
 }

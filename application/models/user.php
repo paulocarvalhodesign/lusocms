@@ -81,7 +81,23 @@ public static function roleName(){
 	return null;	
 	}
 }
+public static function isAdministrator(){
 
+	$logged_user = Auth::user();
+	
+	if($logged_user){
+	$roles = User::find($logged_user->id)->roles()->first();
+	$name = $roles->name;
+	$id = $roles->id;
+	if($name == 'administrator' && $id == '1')
+	return $permitions = true;
+	}
+	
+	else
+	{
+	return null;	
+	}
+}
 public static function showAvatar($user, $width, $height){
 
  $gravatar   = CMS::get_gravatar($user->username);

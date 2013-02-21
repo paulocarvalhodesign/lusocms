@@ -154,12 +154,13 @@ Route::post('form/add', function() {
   	}
 	$area    = Input::get('area');
 	$content = Input::get('form');
-
+	$template = Input::get('template');
 
 	$content = Form\Models\Formblock::create(array(
 		'page_id'=> $page_id,
 		'area_id'=> $area,
 		'form_id'=> $content,
+		'template'=>$template,
 		'block_handle'=>'formblock',
 		'block_name'=>'form'
 
@@ -208,9 +209,10 @@ Route::post('form/edit', function() {
 	$id = Input::get('id');
 	
 	$newcontent = Input::get('form_id');
-
+	$template = Input::get('template');
 	$content = Form\Models\Formblock::find($id);
 	$content->form_id = $newcontent;
+    $content->template = $template;
 	$content->save();
 
 	

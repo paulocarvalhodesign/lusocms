@@ -48,7 +48,7 @@ class Users_Controller extends Dashboard_Controller {
     }
      public function post_new() {
 
-
+        try{
             $avatar = Input::get('avatar');
             $nickname = Input::get('nickname');
             $username = Input::get('username');
@@ -57,6 +57,7 @@ class Users_Controller extends Dashboard_Controller {
             $password = Input::get('password');
             $pass = Hash::make($password);
 
+            $new_role = Input::get('role');
 
             $user = new User();
                 
@@ -68,9 +69,16 @@ class Users_Controller extends Dashboard_Controller {
             $user->password = $pass;
 
       
+           $user->save();
+           $id = $user->id;
 
-            $user->save();
-            Session::flash('info', '
+           $role = new RoleUser();
+
+           $role->user_id = $id ;
+           $role->role_id = $new_role ;
+           $role->save();
+
+           Session::flash('info', '
                   <div class="alert alert-info">
                   <button type="button" class="close" data-dismiss="alert">×</button>
                   <span class="error">User Created!</span>
@@ -78,9 +86,32 @@ class Users_Controller extends Dashboard_Controller {
 
 
 
-        ');
+            
+            ');
 
             return Redirect::to('users');
+
+           }
+           catch(exeption $e){
+
+              Session::flash('info', '
+                  <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <span class="error">'.$e->getMessage().'</span>
+                  </div>
+
+
+
+            
+            ');
+
+            return Redirect::to('users');
+
+           }
+
+
+
+            
           
     }
 

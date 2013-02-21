@@ -186,6 +186,12 @@ static function Insert_db(){
       
       
     });   
+    Schema::create('composer_groups', function($table) {
+      $table->increments('id');
+      $table->integer('page_id');
+      $table->string('name', 128);
+      $table->integer('user'); 
+    });
     
     Schema::create('blocks', function($table) {
       $table->increments('id');
@@ -348,6 +354,7 @@ static function Insert_db(){
 
     Schema::create('files', function($table) {
       $table->increments('id');
+      $table->integer('owner');
       $table->string('title', 128);
       $table->string('filename', 128);
       $table->string('description', 128);
@@ -376,6 +383,7 @@ static function Insert_db(){
 
     Schema::create('sets', function($table) {
           $table->increments('id');
+          $table->integer('owner');
           $table->string('name', 128);
           $table->timestamps();
         });

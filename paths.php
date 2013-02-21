@@ -123,8 +123,4 @@ function path($path)
 function set_path($path, $value)
 {
 	$GLOBALS['laravel_paths'][$path] = $value;
-} */
-function set_path($path, $value)
-{
-	$GLOBALS['laravel_paths'][$path] = $value;
 }

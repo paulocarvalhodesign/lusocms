@@ -28,7 +28,7 @@ class Home_Controller extends Base_Controller {
 	public function get_index()
 	{
 		
-		
+	
 	   // Grab our last segment of the requested URI
 	   $link     		 = CMS::last();
 	   $filter   		 = parse_url($link);
@@ -48,6 +48,7 @@ class Home_Controller extends Base_Controller {
 	   $settings  = CMS::set_settings();
 
 	   Config::set('page_url', $page->route);
+	   Config::set('owner', $page->owner);
 		 
 		 foreach($settings as $setting)
 			Config::set($setting->name, $setting->value);

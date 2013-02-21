@@ -35,17 +35,19 @@
 
          <div class="block header_block">
           <h4><i class="icon-user"></i> <?php echo Lang::line('dashboard.header_users');?>
-
+        @if($user->isAdministrator()) 
             <ul class="inner_navigation">
                       <li><a href="#" onclick="$('#new_user_modal').modal({backdrop: 'static'});" class="" ><i class="icon-user icon"></i> New User </a>
                 </ul>
-
+        @endif
           </h4>  
           </div>
           <br/>
         <div class="block">
         <div class="row-fluid">
              <div class="span12">
+
+             @if($user->isAdministrator()) 
                <table class="table table-condensed table-bordered">
              <thead>
              <tr>
@@ -84,8 +86,8 @@
                 <td>{{$user->username }} </td>
                 <?php 
             
-                $user_role = db::table('role_user')->where_user_id($user->id)->only('id');
-                $role = db::table('roles')->where_id($user_role)->only('name');
+                $user_role = db::table('role_user')->where_user_id($user->id)->first();
+                $role = db::table('roles')->where_id($user_role->role_id)->only('name');
 
               
                 ?>
@@ -144,7 +146,39 @@
               @endforeach
             </tbody>
             </table>  
+            @else
 
+               <form method="POST" action="{{ URL::to('users/update') }}" id="user_modal_form--{{$user->id}}" enctype="multipart/form-data">
+                         <div class="row-fluid">
+                       <div class="span12">
+                                 
+                       
+                       {{Form::hidden('id',$user->id)}}
+                      <label>Avatar: (Use filename from file manager)</label>
+                      {{Form::text('avatar', $user->avatar)}}
+                      <br/>
+
+                      <label>Nickname:</label>
+                      {{Form::text('nickname', $user->nickname)}}
+                      <br/>
+                        <label>Username:</label>
+                      {{Form::text('username', $user->username)}}
+                      <br/>
+                        <label>Firstname:</label>
+                      {{Form::text('firstname', $user->firstname)}}
+                      <br/>
+                      <label>Lastname:</label>
+                      {{Form::text('lastname', $user->lastname)}}
+                       <br/>
+                      
+                      <label>New Password</label>
+                      {{Form::password('password')}} 
+
+                       <button type="button" onclick="$('#user_modal_form--{{$user->id}}').submit();" class="btn btn-primary">Save</a>
+                  </form>
+
+
+            @endif
             </div>
         </div>
       </div>
@@ -162,7 +196,13 @@
                       <label>Avatar: (Use filename from file manager)</label>
                       {{Form::text('avatar')}}
                       <br/>
-                   
+                      <?php $roles = array(
+                        '1' =>'Administrator',
+                        '2' =>'Author'
+                      );?>
+                      <label>User Group:</label>
+                      {{Form::select('role', $roles)}}
+                      <br/>
 
                       <label>Nickname:</label>
                       {{Form::text('nickname')}}

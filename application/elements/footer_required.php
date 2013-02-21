@@ -9,7 +9,8 @@
  * 
  */
 ?>
-<?php Session::get('message') ?>
+<?php Session::get('message') ;?>
+
 <?php if(Auth::check() == true):?>
 <div class="cms_toolbar hidden-phone">
 
@@ -25,20 +26,7 @@
 
 <script>
   
-$('.modal').bind('hidden', function () {
- // window.location.reload(true);
-});
 
-function deleteItem() {
-
-   //  if (confirm("Are you sure?")) {
-        
-   //     return true;
-
-   //  }
-    
-   // return false;
-}
 
 $('.delete').click(function(event) {
     event.preventDefault();

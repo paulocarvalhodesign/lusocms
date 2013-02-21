@@ -36,10 +36,21 @@ class Tree
         $tree .= '<div id="navigation_tree"></div>'; 	
 
  		 $tree .='<script>';
-       	
-       	 $pages = DB::table('pages')->where_parent_id(0)->order_by('order','asc')->get();
 
-    	$tree .= 'var data = [';        
+         $user = Auth::user();
+
+         if($user->isAdministrator())
+
+            $pages = DB::table('pages')->where_parent_id(0)->order_by('order','asc')->get();
+       	 
+         else
+       	    $pages = DB::table('pages')->where_parent_id(0)->where_owner($user->id)->order_by('order','asc')->get();
+
+        if(empty($pages))
+    	   
+           $pages = DB::table('pages')->where_owner($user->id)->order_by('order','asc')->get();
+
+        $tree .= 'var data = [';        
 
         foreach($pages as $page){
 

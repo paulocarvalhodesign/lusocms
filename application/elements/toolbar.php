@@ -42,7 +42,15 @@
       <li><i class="icon-th-large icon-white"></i> 
         <?php echo HTML::link('admin', Lang::line('toolbar.dashboard')); ?>
       </li>
-<?php if($user->canCreate() == 'true'):?>
+<?php if($user->canWrite()):?>
+  <li>
+
+        <i class="icon-pencil icon-white"></i>
+
+        <?php echo HTML::link('pages/composer', Lang::line('toolbar.composer')); ?>
+ </li>
+ <?php endif;?> 
+<?php if($user->isAdministrator()):?>
       <?php if(Config::get('edit_mode') == 'false' || Config::get('edit_mode') == ''):?>
       
       <li><i class="icon-pencil icon-white"></i> <?php echo HTML::link('edit/'.Config::get('page_id').'', Lang::line('toolbar.edit_mode'), array('class'=>'edit-trigger')); ?></li>

@@ -44,9 +44,12 @@
       <div class="block header_block">
         <h4>
 
-          <i class="icon-file"></i>Add New Page
+          <i class="icon-file"></i>Composer Groups
 
           <ul class="inner_navigation">
+               <li>
+                 <a href="{{url('pages')}}"> <i class="icon icon-plus"></i> Add New Group</a>
+              </li>
                <li>
                  <a href="{{url('pages')}}"> <i class="icon icon-arrow-left"></i> Back</a>
               </li>
@@ -59,90 +62,38 @@
               <div class="block">
               <div class="row-fluid"> 
               <div class="span12">
+            <table class="table table-condensed table-bordered">
+             <thead>
+             <tr>
+             <th>Name</th>
+             <th>Page Type</th>
+             <th>User</th>
+             <th>Parent Page</th>
+             <th>Edit</th>
+             <th>Delete</th>
+        
+             </tr>
+             </thead>
+             <tbody>
+                @foreach($groups as $group)
+ <tr>
+                <td>{{$group->name}}</td>
+                <td>{{$group->page_type}}</td>
+                <?php $us = User::where_id($group->user)->only('nickname');?>
+                <td>{{$us}}</td>
+                <?php $page = DB::table('pages')->where_id($group->page_id)->only('title');?>
+                <td>{{$page}}</td>
+                <td><a class="btn" href="#">edit</a></td>
+                <td><a class="btn" href="#">delete</a></td>
 
-                {{ Form::open('pages/new', '',array('id'=>'new_page_form')) }}
-
-              <div class="span4"> 
-              <p>
-              <label><span>Page Title:</span></label>
-              {{ Form::text('title', '', array('id'=>'title')) }}
-              </p>
-              <p>
-              <label><span>Page Tags</span></label>
-              {{Form::text('tags')}}
-              </p>
-              
-
-              </div>
-
-              <div class="span4"> 
-              <p>
-              <label><span>Page URL:</span></label>
-              {{ Form::text('url', '', array('id'=>'url')) }}
-             </p>
-              <p>
-              <label><span>Page Keywords</span></label>
-              {{Form::text('keywords')}}
-              </p>
-              
-              {{ Form::hidden('exclude_from_sitemap', 'false') }} 
-                                     
-               
-              {{ Form::hidden('exclude_from_navigation', 'false') }}
-             
-              </div> 
-
-              <div class="span4"> 
-
-              <p> Composer Group :: {{$composer_user->name}}</p>
-              <br/>  
-              <?php $page = DB::table('pages')->where_id($composer_user->page_id)->only('title');?>
-              
-              <p>Location :: {{$page}} </p>
-          
-              {{ Form::hidden('pagetype', $composer_user->page_type) }}
-             
-
-              {{ Form::hidden('parent_id', $composer_user->page_id) }}              
-              
-              {{ Form::hidden('exclude_from_pagelist', 'false') }}
-               
-            </div>
-              
-              
-             </div>
-             </div>
-              <div class="row-fluid"> 
-              <div class="span12">  
-              <div class="span8">
-              
-              
-                 
-             <p>
-              
-              <label><span>Description:</span></label>
-              {{ Form::textarea('description', '', array('class'=>'description', 'width'=>'100%')) }}
-            </p>
-
-               </div>
-                <div class="span4">
-          
-              
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-
-            
-
-            {{Form::submit('Create Page', array('class'=>'btn'))}}
-
-          
-            {{ Form::close() }}
+</tr>
+                @endforeach
+              </tbody>
+  </table>               
             </div>
       </div>
 </div>
-</div>
+
 <br/>
 
 <div class="header_dashboard">

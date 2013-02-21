@@ -95,9 +95,9 @@ class Pages_Controller extends Dashboard_Controller {
         else
 
     {
-
+    $user = Auth::user();  
     $page = new page();
-
+    $page->owner = $user->id;
     $page->title = Input::get('title'); 
     $page->name = Input::get('url');  
     $page->url = Input::get('url'); 
@@ -161,6 +161,35 @@ class Pages_Controller extends Dashboard_Controller {
     }
     
     public function get_composer() {
+      
+     $user= Auth::user(); 
+     $composer_user = DB::table('composer_groups')->where_user($user->id)->first();
+
+    
+     if($user->isAdministrator()){
+      return Redirect::to('pages/new');
+     }
+
+      
+
+    
+    
+    if(empty($composer_user)){
+      
+      Session::flash('info', '
+                  <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <span class="error">You have no composer groups!</span>
+                  </div>
+
+
+
+        ');
+
+
+      return Redirect::to('admin');
+    }else{
+
      $theme = DB::table('themes')->where_active('1')->first(); 
      $dir = path('root').'cms_user/themes/views/themes/'.$theme->name.'/';    
      $page_types = Page::pagetypes($dir);
@@ -173,13 +202,14 @@ class Pages_Controller extends Dashboard_Controller {
          $parents[$page->id] = $page->name; 
      }
     
-     $view = View::make('path: '.ADMIN_THEME_PATH.'pages/new.blade.php')
+     $view = View::make('path: '.ADMIN_THEME_PATH.'pages/composer.blade.php')
+        ->with('composer_user',$composer_user)
         ->with('user',Auth::user())
         ->with('pagetypes',$pagetypes)
         ->with('parents',$parents);
 
       return $view;
- 
+      }
     }
 
     
@@ -269,6 +299,18 @@ class Pages_Controller extends Dashboard_Controller {
  
       }
     }
+
+
+     public function get_composer_groups() {
+
+     $groups = DB::table('composer_groups')->get();
+      $view = View::make('path: '.ADMIN_THEME_PATH.'pages/composer_groups.blade.php')
+        ->with('user',Auth::user())
+        ->with('groups', $groups)
+        ;
+
+      return $view;
+     }
 
     public function post_save_page_atributes(){
 
@@ -401,8 +443,10 @@ class Pages_Controller extends Dashboard_Controller {
      }
 
       public function get_delete($id) {
+      $user = Auth::user();
 
-        $affected = DB::table('pages')->delete($id);
+      if($user->canDelete() == 'true'){
+      $affected = DB::table('pages')->delete($id);
       Session::flash('info', '
                   <div class="alert alert-info">
                   <button type="button" class="close" data-dismiss="alert">×</button>
@@ -424,8 +468,21 @@ class Pages_Controller extends Dashboard_Controller {
 
 
                 File::put(path('root').'public/ckeditor/plugins/internpage/routes.php', $links);  
-      return Redirect::to('pages');
+       return Redirect::to('pages');
+      }
+      else{
+        Session::flash('info', '
+                  <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <span class="error">You dont have enought permitions to delete!</span>
+                  </div>
 
+
+
+        ');
+
+      return Redirect::to('pages');
+      }
       }
 
      public function post_add_attribute(){
