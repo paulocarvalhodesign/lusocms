@@ -125,6 +125,8 @@
 <br/>
  <div class="block">
    <p>No messages...</p>
+
+   
  </div>
 </div>
 </div>

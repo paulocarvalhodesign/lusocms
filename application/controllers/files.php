@@ -32,7 +32,7 @@ class Files_Controller extends Dashboard_Controller {
 
 
     public function get_index() {
-
+      
       
      $files    = DB::table('files')->get();
 

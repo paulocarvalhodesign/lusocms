@@ -39,18 +39,8 @@ class Dashboard_Controller extends Base_Controller {
 
 	public function __construct(){
 
-	require path('root').'cms_config/verify.php';
 	
-		if($install == 'true'){
-
-			$settings = DB::table('settings')->get();
-			foreach($settings as $setting)
-			Config::set($setting->name, $setting->value);
-	   		Config::set('application.language', Config::get('language'));
-
-
-		} 
-
+		
 		
 	}
 	

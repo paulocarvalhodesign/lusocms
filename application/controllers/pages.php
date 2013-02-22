@@ -22,8 +22,10 @@ class Pages_Controller extends Dashboard_Controller {
 
     public $restful = true;
     
+   
 
     public function get_index() {
+      
         
      $pages = Page::order_by('order', 'asc')->get();        
 
@@ -299,7 +301,26 @@ class Pages_Controller extends Dashboard_Controller {
  
       }
     }
+     public function post_composer_groups() {
+        
+    $name = Input::get('name');
+    $page = Input::get('page');
+    $user = Input::get('user');
+    $page_type = Input::get('page_type');
 
+    $id = DB::table('composer_groups')->insert(
+
+      array(
+
+        'page_id' => $page,
+        'page_type' => $page_type,
+        'name' => $name,
+        'user' => $user 
+        
+        ));
+    return Redirect::to('pages/composer_groups'); 
+
+    }
 
      public function get_composer_groups() {
 

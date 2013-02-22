@@ -24,6 +24,7 @@ class Editblock_Controller extends Base_Controller {
     
 
     public function get_index() {
+       
         
      $block_id = $_GET['id'];
      $page_id  = $_GET['page_id'];  

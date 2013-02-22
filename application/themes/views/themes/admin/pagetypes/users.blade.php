@@ -184,7 +184,7 @@
       </div>
    </div>
 
- <div class="modal hide" id="new_user_modal">
+            <div class="modal hide" id="new_user_modal">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h3>New User:</h3>
@@ -196,10 +196,18 @@
                       <label>Avatar: (Use filename from file manager)</label>
                       {{Form::text('avatar')}}
                       <br/>
-                      <?php $roles = array(
-                        '1' =>'Administrator',
-                        '2' =>'Author'
-                      );?>
+                      <?php $allroles = Role::all();?>
+                     
+                     <?php 
+
+                      $roles = array();
+                      foreach($allroles as $role)
+
+                        $roles[$role->id] = ucfirst($role->name);
+
+
+
+                      ?>
                       <label>User Group:</label>
                       {{Form::select('role', $roles)}}
                       <br/>

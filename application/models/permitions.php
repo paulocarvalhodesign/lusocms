@@ -20,6 +20,25 @@ class Permitions
 		return null;	
 		}
 	}
+	public static function Subscriber($id){
+
+		if($id == '3'){
+		return true;
+		}
+		else{
+		return null;	
+		}
+	}
+
+	public static function Author($id){
+
+		if($id == '2'){
+		return true;
+		}
+		else{
+		return null;	
+		}
+	}
 
 	public static function PageOwner($user_id, $page_id){
 
@@ -30,4 +49,21 @@ class Permitions
 		return null;	
 		}
 	}
+
+	public static function CantCreate($user){
+
+	  
+       if($user->canCreate() == 'false'){
+		
+		return true;
+		
+		}
+		else
+		{
+
+		return false;	
+		
+		}
+	}
+	
 }

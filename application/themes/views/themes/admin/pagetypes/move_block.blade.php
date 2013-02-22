@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{Config::get('cms.site_name')}} :: Admin Area</title>
+    <title>{{Config::get('site_name')}} :: Admin Area</title>
     <meta name="viewport" content="width=device-width">
     {{ HTML::script('global/js/jquery.js') }} 
     {{ HTML::style('jquery-ui/css/lusocms-theme/jquery-ui-1.9.0.custom.min.css') }} 

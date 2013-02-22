@@ -189,6 +189,7 @@ static function Insert_db(){
     Schema::create('composer_groups', function($table) {
       $table->increments('id');
       $table->integer('page_id');
+      $table->string('page_type', 128);
       $table->string('name', 128);
       $table->integer('user'); 
     });
@@ -328,7 +329,7 @@ static function Insert_db(){
       'can_delete'     => 'true'
     )); 
     DB::table('roles')->insert(array( 
-      'name'    => 'editor',
+      'name'    => 'author',
       'can_create'     => 'true',
       'can_write'     => 'true',
       'can_delete'     => 'false'

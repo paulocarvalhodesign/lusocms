@@ -41,12 +41,16 @@
             <i class="icon-file"></i> <?php echo Lang::line('toolbar.pages');?> 
 
              <ul class="inner_navigation">
+              
               <?php if($user->canCreate() == 'true'):?>
+              <?php if(!$user->isAdministrator()):?>
               <li>
                
                 <a href="{{url('pages/composer')}}"> <i class="icon icon-pencil"></i> Composer</a>
                
               </li>
+                <?php endif;?>
+                 <?php if($user->isAdministrator()):?>
               <li>
                
                 <a href="{{url('pages/composer_groups')}}"> <i class="icon icon-th-large"></i> Composer Groups</a>
@@ -61,6 +65,7 @@
                 <a href="{{url('pages/attributes')}}"> <i class="icon icon-asterisk"></i> Page Atributes</a>
                  
                </li>
+                 <?php endif;?>
              <?php else :?>
 
               <li>

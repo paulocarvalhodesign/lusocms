@@ -56,7 +56,8 @@
     Route::group(array('before' => 'auth'), function()
     {
 
-    
+    Route::group(array('before' => 'subscriber'), function()
+    {
 
     // Dashboard Routes
     Route::get('admin', array('uses'=>'admin@index'));
@@ -85,6 +86,7 @@
     Route::get('pages/composer', array('uses'=>'pages@composer'));
     Route::post('pages/composer', array('uses'=>'pages@composer'));
     Route::get('pages/composer_groups', array('uses'=>'pages@composer_groups'));
+    Route::post('pages/composer_groups', array('uses'=>'pages@composer_groups'));
     Route::post('pages/update_page', array('uses'=>'pages@update_page'));
     Route::get('pages/attributes', array('uses'=>'pages@attributes'));
     Route::post('pages/save_page_atributes', array('uses'=>'pages@save_page_atributes'));
@@ -102,12 +104,6 @@
     Route::get('moveblock', array('uses'=>'moveblock@index'));  
     Route::post('blocks/reorder',array('uses'=>'blocks@reorder'));
 
-    // users Routes
-    Route::post('users/update', array('uses'=>'users@update'));
-    Route::get('users', array('uses'=>'users@index'));
-    Route::post('users/new', array('uses'=>'users@new'));
-    Route::get('users/delete/(:num)', array('uses'=>'users@delete'));
-    
 
     // Settings Routes
     Route::get('settings', array('uses'=>'settings@index'));
@@ -156,6 +152,14 @@
         return Redirect::to($page->route);
 
     });
+
+  });
+
+    // users Routes
+    Route::post('users/update', array('uses'=>'users@update'));
+    Route::get('users', array('uses'=>'users@index'));
+    Route::post('users/new', array('uses'=>'users@new'));
+    Route::get('users/delete/(:num)', array('uses'=>'users@delete'));
  
 
  });//end of auth group
@@ -525,9 +529,26 @@ Event::listen('500', function()
 Route::filter('before', function()
 {
     // Do stuff before every request to your application...
-  //Config::set('application.language', 'en');
+ require path('root').'cms_config/verify.php';
+ if($install == 'true'){
+
+      $settings = DB::table('settings')->get();
+      foreach($settings as $setting)
+      Config::set($setting->name, $setting->value);
+        Config::set('application.language', Config::get('language'));
+
+
+    } 
+    $user = Auth::user();
+    if(!empty($user)){
+    $user_role = db::table('role_user')->where_role_id($user->id)->first(); 
+    $permitions = Permitions::administrator($user_role->role_id);
+    Config::set('permitions', $permitions); 
+   }
   
-});
+    });
+
+
 Route::filter('profiler', function()
 {
    if (!Auth::guest()){
@@ -535,22 +556,58 @@ Route::filter('profiler', function()
    }
   
 });
+Route::filter('subscriber', function()
+{
+        $user = Auth::user();
+       if(Permitions::CantCreate($user)){
+
+        return Redirect::to('users');
+       }
+  
+});
+
 Route::filter('compress', function( $response = null )
 
 {
+  
+function sanitize_output($buffer)
+{
+    $search = array(
+        '/\>[^\S ]+/s', //strip whitespaces after tags, except space
+        '/[^\S ]+\</s', //strip whitespaces before tags, except space
+        '/(\s)+/s'  // shorten multiple whitespace sequences
+        );
+    $replace = array(
+        '>',
+        '<',
+        '\\1'
+        );
+    $buffer = preg_replace($search, $replace, $buffer);
+
+    return $buffer;
+}
 
 
-// if ( $response ) {
+if(!Auth::user()){
+ if ( $response ) {
 
-// $response->content = str_replace( array("\n","\t") , '' , $response->content );
+ob_start("sanitize_output");
 
-// }
+ $response->content = sanitize_output($response->content);
+
+
+
+
+ }
+}
+
+
 
 });
 
 Route::filter('after', function($response)
 {
-  // Do stuff after every request to your application...
+  
 });
 
 Route::filter('csrf', function()

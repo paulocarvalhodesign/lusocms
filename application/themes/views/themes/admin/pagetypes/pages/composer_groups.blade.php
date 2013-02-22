@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{Config::get('site_name')}} :: New Page</title>
+    <title>{{Config::get('site_name')}} :: Compositor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
    <link href='http://fonts.googleapis.com/css?family=Quantico:400,700' rel='stylesheet' type='text/css'>
     {{ HTML::script('global/js/jquery.js') }} 
@@ -48,7 +48,7 @@
 
           <ul class="inner_navigation">
                <li>
-                 <a href="{{url('pages')}}"> <i class="icon icon-plus"></i> Add New Group</a>
+                 <a href="#" onclick="$('#new_user_modal').modal({backdrop: 'static'});"> <i class="icon icon-plus"></i> Add New Group</a>
               </li>
                <li>
                  <a href="{{url('pages')}}"> <i class="icon icon-arrow-left"></i> Back</a>
@@ -95,6 +95,37 @@
 </div>
 
 <br/>
+
+ <div class="modal hide" id="new_user_modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>New Group:</h3>
+                </div>
+                <div class="modal-body">
+                   
+                <form method="POST" action="{{ URL::to('pages/composer_groups') }}" id="new_user_modal_form" >
+                 
+                 <label>Group Name:</label>     
+                 {{Form::text('name')}}
+                 <br/>
+                  <label>Group User:</label>     
+                 {{Form::text('user')}}
+                 <br/>
+                 <label>Parent Page:</label>     
+                 {{Form::text('page')}}
+                 <br/>  
+                  <label>Type of Page:</label>     
+                 {{Form::text('page_type')}}
+                 <br/>      
+                     
+                
+                <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+                    <button type="button" onclick="$('#new_user_modal_form').submit();" class="btn btn-primary">Save</a>
+                </form>
+                </div>
+               </div>
+</div>
 
 <div class="header_dashboard">
 <div class="row-fluid">

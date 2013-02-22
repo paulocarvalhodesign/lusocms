@@ -28,11 +28,8 @@ class Edit_Controller extends Base_Controller {
 
 	public function get_index($id)
 	{
-
-		$page_id =  $id;
-
-
-
+       
+        $page_id =  $id;
         $page = Page::find($page_id);
 
         $user = Auth::user();

@@ -33,12 +33,15 @@ class Admin_Controller extends Dashboard_Controller {
      |
      */
 
+     public function __construct(){
+
+     }
+    
 
     public function get_index() {
       
-        $analytics = DB::table('analytics')->get();
 
- 
+        $analytics = DB::table('analytics')->get();
 
         if($analytics){
        
