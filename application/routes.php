@@ -104,7 +104,8 @@
     Route::get('moveblock', array('uses'=>'moveblock@index'));  
     Route::post('blocks/reorder',array('uses'=>'blocks@reorder'));
 
-
+    Route::group(array('before' => 'administrator'), function()
+    {
     // Settings Routes
     Route::get('settings', array('uses'=>'settings@index'));
     Route::post('settings/maintenance', array('uses'=>'settings@maintenance'));
@@ -119,12 +120,12 @@
      // Extensions Routes
     Route::get('extensions', array('uses'=>'extensions@index'));
     
-
+    });
 
     Route::get('edit/(:num)',array('uses'=>'edit@index'));
     Route::get('edit/publish/(:num)',array('uses'=>'edit@publish'));
 
-
+    
 
     Route::get('delete_block', function(){
 
@@ -558,13 +559,15 @@ Route::filter('profiler', function()
 });
 Route::filter('subscriber', function()
 {
-        $user = Auth::user();
-       if(Permitions::CantCreate($user)){
+      $user = Auth::user();
+      if(!Permitions::Administrator($user) && !Permitions::Author($user))  
 
         return Redirect::to('users');
-       }
   
 });
+
+
+
 
 Route::filter('compress', function( $response = null )
 
@@ -605,6 +608,14 @@ ob_start("sanitize_output");
 
 });
 
+Route::filter('administrator', function()
+{
+  $user = Auth::user();
+      if(!Permitions::Administrator($user))  
+
+        return Redirect::to('admin');
+});
+
 Route::filter('after', function($response)
 {
   
@@ -626,7 +637,7 @@ if (Auth::guest())
 
 
 
-if (Auth::user()->is_admin) 
+if (Auth::user()->isAdministrator()) 
    
     Config::set('application.profiler', true);
     Config::set('error.detail', true);

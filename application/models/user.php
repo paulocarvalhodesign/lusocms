@@ -98,8 +98,29 @@ public static function isAdministrator(){
 	return null;	
 	}
 }
+public static function isAuthor(){
+
+	$logged_user = Auth::user();
+	
+	if($logged_user){
+	$roles = User::find($logged_user->id)->roles()->first();
+	$name = $roles->name;
+	$id = $roles->id;
+	if($name == 'editor')
+	return $permitions = true;
+	}
+	
+	else
+	{
+	return null;	
+	}
+}
 public static function showAvatar($user, $width, $height){
 
+
+$avatar= '';
+
+ if($user){
  $gravatar   = CMS::get_gravatar($user->username);
  $user_image = $user->avatar;
 
@@ -117,7 +138,7 @@ if($user_image)
 	else 
 
  $avatar =  '<img src="'.url('public/images/avatar_user.png').'" width="'.$width.'" height="'.$height.'"/>';
-
+}
 
 
 

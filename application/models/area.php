@@ -117,7 +117,7 @@ public static function render($area, $page_id, $limit=''){
 
 			}
 				else{
-			if(Auth::check()){
+			if(Auth::check()  && Permitions::Administrator() || Permitions::PageOwner()){
 	    $obj .='
 		
 		<div class="dropdown">
@@ -200,7 +200,7 @@ public static function render($area, $page_id, $limit=''){
 			}
 				else{
 
-		if(Auth::check()){
+		if(Auth::check() && Permitions::Administrator() || Permitions::PageOwner()){
 
 		$obj .='
 		
@@ -348,8 +348,12 @@ public static function close_area_wrapper(){
 
 public static function open_wrapper($area, $handle, $id, $global){
 
+	
+
+
 	if(Config::get('edit_mode') == 'true' && Auth::check()){
 
+	if(Permitions::Administrator() || Permitions::PageOwner()){
 	
 	$markup ='<div class="block_wrapper block_wrapper-'.$area.$id.'">';
 
@@ -419,26 +423,32 @@ public static function open_wrapper($area, $handle, $id, $global){
 	$markup .='<div data-toggle="dropdown" class="block_wrapper_overlay"></div>';
 	
 	return $markup;
+		}
   	 }
   	 else
   	 {
 
   	 	return false;
 	}
+  
 }
 	
 public static function close_wrapper(){
 
+		
 	if(Config::get('edit_mode') == 'true' && Auth::check()){
-	
+	if(Permitions::Administrator() || Permitions::PageOwner()){
+
 	$markup = '</div>';
 
 	$markup .='</div>';
 
 	return $markup;
+	 }
 		}else{
 	return false;
 	}
+
 }
 
 
@@ -534,7 +544,7 @@ public static function globalRender($area, $page_id, $limit=""){
 				else{
 
 
-			if(Auth::check()){
+			if(Auth::check() && Permitions::Administrator() || Permitions::PageOwner()){
 			
 			$obj .='
 		
@@ -616,7 +626,7 @@ public static function globalRender($area, $page_id, $limit=""){
 		else{	
 		$obj='';
 		
-		if(Auth::check()){
+		if(Auth::check() && Permitions::Administrator() || Permitions::PageOwner()){
 		$obj .='
 		
 		<div class="dropdown">

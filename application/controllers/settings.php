@@ -24,13 +24,14 @@ class Settings_Controller extends Dashboard_Controller {
     
     public function __construct(){
 
-        
+      
         
      }
 
 
     public function get_index() {
         
+      
      
      $mmode = DB::table('settings')->where_name('maintenance-mode')->get();
      $name = DB::table('settings')->where_name('site_name')->get();

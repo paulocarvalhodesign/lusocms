@@ -45,7 +45,7 @@
 <?php if($user->canCreate() == 'false'):?>
 
 <?php else:?>      
-<?php if($user->canWrite() == 'true' && !$user->isAdministrator()):?>
+<?php if($user->canWrite() == 'true' && !Permitions::Administrator()):?>
 
   <li>
 
@@ -55,10 +55,30 @@
  </li>
  
 <?php endif;?> 
-<?php if($user->isAdministrator()):?>
+<?php if( Permitions::PageOwner() && !Permitions::Administrator()):?>
+      <?php if(Config::get('edit_mode') == 'true'):?>
+
+      <li><i class="icon-pencil icon-white"></i> <?php echo HTML::link('edit/publish/'.Config::get('page_id').'', Lang::line('toolbar.publish'), array('class'=>'save-trigger')); ?></li>
+
+    <?php else:?>
+        <li>
+          <i class="icon-pencil icon-white"></i> <?php echo HTML::link('edit/'.Config::get('page_id').'', Lang::line('toolbar.edit_mode'), array('class'=>'edit-trigger')); ?>
+        </li>
+    
+  <?php endif;?>
+  <?php endif;?>
+
+
+<?php if( Permitions::Administrator()):?>
+
       <?php if(Config::get('edit_mode') == 'false' || Config::get('edit_mode') == ''):?>
       
-      <li><i class="icon-pencil icon-white"></i> <?php echo HTML::link('edit/'.Config::get('page_id').'', Lang::line('toolbar.edit_mode'), array('class'=>'edit-trigger')); ?></li>
+
+      
+        <li>
+          <i class="icon-pencil icon-white"></i> <?php echo HTML::link('edit/'.Config::get('page_id').'', Lang::line('toolbar.edit_mode'), array('class'=>'edit-trigger')); ?>
+        </li>
+    
 
       <li>
 

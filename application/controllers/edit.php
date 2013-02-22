@@ -30,15 +30,28 @@ class Edit_Controller extends Base_Controller {
 	{
        
         $page_id =  $id;
+        Config::set('page_id', $page_id);
+
         $page = Page::find($page_id);
 
         $user = Auth::user();
         $owner = $page->owner;
-
-        if($user->canWrite() == 'true'){
+        Config::set('owner', $owner);
+        
+        
+        if(Permitions::PageOwner()){
 
         $page->edit_mode = 'true';
-        
+        $page->save();
+
+    
+
+        }
+        if(Permitions::Administrator()){
+
+            $page->edit_mode = 'true';
+            $page->save();
+                
         }else{
 
         $message ='<div class="alert alert-error">
@@ -47,18 +60,36 @@ class Edit_Controller extends Base_Controller {
         session::flash('message', $message);
         }
 
-        $page->save();
         
-        return Redirect::to($page->route);
+        
+       return Redirect::to($page->route);
 
 	}
 
 	public function get_publish($id){
 
 		$page_id =  $id;
+        Config::set('page_id', $page_id);
+
         $page = Page::find($page_id);
+
+        $user = Auth::user();
+        $owner = $page->owner;
+        Config::set('owner', $owner);
+        
+        
+        if(Permitions::PageOwner()){
+
+        $page->edit_mode = 'false';
+        $page->save();
+
+    
+
+        }
+        if(Permitions::Administrator()){
         $page->edit_mode = 'false';       
         $page->save();
+        }
         return Redirect::to($page->route);
 
 

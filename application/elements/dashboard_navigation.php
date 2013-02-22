@@ -23,11 +23,18 @@
      <li><a href=" <?php echo url('form/list') ;?> "><i class="icon-inbox"></i> <?php echo Lang::line('toolbar.forms');?></a> </li>
  
      <li><a href=" <?php echo url('users') ;?> "><i class="icon-user"></i> <?php echo Lang::line('toolbar.users');?></a> </li>
-   
+   <?php 
+     
+    if(Permitions::Administrator()) :?>
+    
      <li><a href=" <?php echo url('settings') ;?> "><i class="icon-wrench"></i> <?php echo Lang::line('toolbar.settings');?></a> </li>
     
      <li><a href=" <?php echo url('extensions') ;?> "><i class="icon-th"></i> <?php echo Lang::line('toolbar.extensions');?></a> </li>
-   
+  
+  <?php else:?>
+ 
+
+  <?php endif;?> 
      <a class="frontend_btn tt" rel="tooltip" data-placement="top" data-original-title="<?php echo Lang::line('toolbar.frontend_bubble');?>" href="<?php echo url('/');?>"><i class="icon-globe icon"></i> <?php echo Lang::line('toolbar.frontend');?></a>
 
 <?php endif;?>

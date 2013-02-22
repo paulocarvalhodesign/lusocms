@@ -11,15 +11,16 @@
 class Permitions 
 {
 	
-	public static function Administrator($id){
+	public static function Administrator(){
 
-		if($id == '1'){
+		if(User::isAdministrator()){
 		return true;
 		}
 		else{
-		return null;	
+		return false;	
 		}
 	}
+
 	public static function Subscriber($id){
 
 		if($id == '3'){
@@ -30,9 +31,20 @@ class Permitions
 		}
 	}
 
-	public static function Author($id){
+	public static function Author(){
 
-		if($id == '2'){
+		if(user::isAuthor()){
+		return true;
+		}
+		else{
+		return false;	
+		}
+	}
+
+	public static function PageOwner(){
+		$page_id = Config::get('owner');
+ 		$user = Auth::user();
+		if($user->id == $page_id){
 		return true;
 		}
 		else{
@@ -40,20 +52,10 @@ class Permitions
 		}
 	}
 
-	public static function PageOwner($user_id, $page_id){
-
-		if($user_id == $page_id){
-		return true;
-		}
-		else{
-		return null;	
-		}
-	}
-
-	public static function CantCreate($user){
+	public static function CantCreate(){
 
 	  
-       if($user->canCreate() == 'false'){
+       if(user::canCreate() == 'false'){
 		
 		return true;
 		

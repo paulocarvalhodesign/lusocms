@@ -293,7 +293,7 @@ class Pages_Controller extends Dashboard_Controller {
 
 
 
-                File::put(path('root').'public/ckeditor/plugins/internpage/routes.php', $links);  
+                File::put(path('root').'cms_core/public/ckeditor/plugins/internpage/routes.php', $links);  
 
 
 
