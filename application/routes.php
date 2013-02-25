@@ -56,8 +56,8 @@
     Route::group(array('before' => 'auth'), function()
     {
 
-    Route::group(array('before' => 'subscriber'), function()
-    {
+    // Route::group(array('before' => 'subscriber'), function()
+    // {
 
     // Dashboard Routes
     Route::get('admin', array('uses'=>'admin@index'));
@@ -104,8 +104,8 @@
     Route::get('moveblock', array('uses'=>'moveblock@index'));  
     Route::post('blocks/reorder',array('uses'=>'blocks@reorder'));
 
-    Route::group(array('before' => 'administrator'), function()
-    {
+    // Route::group(array('before' => 'administrator'), function()
+    // {
     // Settings Routes
     Route::get('settings', array('uses'=>'settings@index'));
     Route::post('settings/maintenance', array('uses'=>'settings@maintenance'));
@@ -120,7 +120,7 @@
      // Extensions Routes
     Route::get('extensions', array('uses'=>'extensions@index'));
     
-    });
+    //});
 
     Route::get('edit/(:num)',array('uses'=>'edit@index'));
     Route::get('edit/publish/(:num)',array('uses'=>'edit@publish'));
@@ -152,7 +152,7 @@
         $page = Page::find($page_id);
         return Redirect::to($page->route);
 
-    });
+    //});
 
   });
 
