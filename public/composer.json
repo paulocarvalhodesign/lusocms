@@ -1,0 +1,7 @@
+{
+    "name": "paulocarvalhodesign/lusocms-core-assets",
+    
+    "require": {
+       "paulocarvalhodesign/lusocms-core-assets": "dev-master"
+    }
+}
