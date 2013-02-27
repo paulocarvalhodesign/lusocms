@@ -77,7 +77,11 @@
               <label><span>Page Keywords</span></label>
               {{Form::text('keywords', $page->keywords)}}
               </p>
+              <p>
+              <label><span>Page Owner</span></label>
               
+              {{Form::select('owner', $users, $page->owner)}}
+              </p>
               </div>
 
 

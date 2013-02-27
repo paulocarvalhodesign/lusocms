@@ -5,7 +5,7 @@
 
 CKEDITOR.editorConfig = function( config ) {
 	
-    config.uiColor = '#AADC6E';
+    //config.uiColor = '#AADC6E';
 	config.extraPlugins = 'internpage';
     config.removePlugins = 'devtools';
     config.toolbar_Basic =

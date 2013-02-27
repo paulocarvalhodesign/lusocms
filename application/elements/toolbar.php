@@ -11,7 +11,7 @@
 ?>
  
 <div class="span10">
-  <img class="luso_icon" src="<?php echo url('cms_core/public/global/img/icon.png');?>" width="25"/>
+  <img class="luso_icon" src="<?php echo url('cms_core/lusocms/public/global/img/icon.png');?>" width="25"/>
 <div class="user_img_toolbar">  
 <?php
  $user   = Auth::user(); 

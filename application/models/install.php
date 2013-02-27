@@ -323,19 +323,19 @@ static function Insert_db(){
     });
 
     DB::table('roles')->insert(array( 
-      'name'    => 'administrator',
+      'name'    => 'Administrator',
       'can_create'     => 'true',
       'can_write'     => 'true',
       'can_delete'     => 'true'
     )); 
     DB::table('roles')->insert(array( 
-      'name'    => 'author',
+      'name'    => 'Author',
       'can_create'     => 'true',
       'can_write'     => 'true',
       'can_delete'     => 'false'
     )); 
     DB::table('roles')->insert(array( 
-      'name'    => 'subscriber',
+      'name'    => 'Subscriber',
       'can_create'     => 'false',
       'can_write'     => 'false',
       'can_delete'     => 'false'

@@ -412,10 +412,15 @@ class Pages_Controller extends Dashboard_Controller {
              $parents[$pa->id] = $pa->name; 
          }
 
+         $all_users = User::all();
 
+         foreach ($all_users as $u) {
+             $users[$u->id] = $u->nickname; 
+         }
         
         $view = View::make('path: '.ADMIN_THEME_PATH.'pages/manage.blade.php')
         ->with('user',Auth::user())
+        ->with('users',$users)
         ->with('page',$page)
         ->with('attributes',$attributes)
         ->with('files',$files)
@@ -432,6 +437,7 @@ class Pages_Controller extends Dashboard_Controller {
         $description = Input::get('description');
         $keywords = Input::get('keywords');
         $tags = Input::get('tags');
+        $owner = Input::get('owner');
 
         $exclude_from_sitemap = Input::get('exclude_from_sitemap');
       
@@ -452,6 +458,7 @@ class Pages_Controller extends Dashboard_Controller {
         $page->exclude_from_sitemap = $exclude_from_sitemap;
         $page->exclude_from_navigation = $exclude_from_navigation;
         $page->exclude_from_pagelist = $exclude_from_pagelist;
+        $page->owner = $owner;
         $page->save();
 
         

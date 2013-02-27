@@ -43,7 +43,11 @@ class Home_Controller extends Base_Controller {
        $theme_assets     = CMS::set_theme_assets($theme);     
 	   $block_assets     = CMS::set_block_assets($page);
 	   $core_js_assets   = CMS::set_core_js_assets();
-	   $agent            = Agent::browser();
+	   $browser            = Agent::browser();
+	   $version            = Agent::version();
+	   $platform		   = Agent::platform();	
+	   $agent = $browser.'-'.$version;
+
 	  
 	   $settings  = CMS::set_settings();
 

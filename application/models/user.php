@@ -89,7 +89,7 @@ public static function isAdministrator(){
 	$roles = User::find($logged_user->id)->roles()->first();
 	$name = $roles->name;
 	$id = $roles->id;
-	if($name == 'administrator' && $id == '1')
+	if($name == 'Administrator' && $id == '1')
 	return $permitions = true;
 	}
 	
@@ -106,7 +106,24 @@ public static function isAuthor(){
 	$roles = User::find($logged_user->id)->roles()->first();
 	$name = $roles->name;
 	$id = $roles->id;
-	if($name == 'editor')
+	if($name == 'Author')
+	return $permitions = true;
+	}
+	
+	else
+	{
+	return null;	
+	}
+}
+public static function isSubscriber(){
+
+	$logged_user = Auth::user();
+	
+	if($logged_user){
+	$roles = User::find($logged_user->id)->roles()->first();
+	$name = $roles->name;
+	$id = $roles->id;
+	if($name == 'Subscriber')
 	return $permitions = true;
 	}
 	

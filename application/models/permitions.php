@@ -21,13 +21,13 @@ class Permitions
 		}
 	}
 
-	public static function Subscriber($id){
+	public static function Subscriber(){
 
-		if($id == '3'){
+		if(user::isSubscriber()){
 		return true;
 		}
 		else{
-		return null;	
+		return false;	
 		}
 	}
 

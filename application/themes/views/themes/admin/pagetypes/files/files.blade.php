@@ -198,8 +198,9 @@
                
              </tbody>
              </table>   
+              @if($file->owner == $user->id || $user->isAdministrator())
                 {{$files->links()}} 
-           
+              @endif
               @endif           
              </div>
            

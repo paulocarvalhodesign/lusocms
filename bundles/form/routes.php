@@ -5,7 +5,8 @@ Route::controller(Controller::detect('form'));
 
 Route::group(array('before' => 'auth'), function()
     {
-
+  Route::group(array('before' => 'subscriber'), function()
+    {
 Route::get('form/list', array('uses'=>'Form::formblock@list'));
 Route::get('form/manage_form/(:num)', array('uses'=>'Form::formblock@manage_form'));
 Route::post('form/manage_form', array('uses'=>'Form::formblock@manage_form'));
@@ -249,7 +250,7 @@ Route::post('form/fields_order', function(){
 				
 		});
 });
-
+});
   Route::post('process_form', function() {
 
 	$user =  Auth::user(); 

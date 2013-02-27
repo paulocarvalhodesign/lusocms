@@ -40,8 +40,7 @@ $(document).ready(function() {
   $(function(){
 
     var url = window.location.pathname, 
-        urlRegExp = new RegExp(url.replace(/\/$/,'') + "$"); // create regexp to match current url pathname and remove trailing slash if present as it could collide with the link in navigation in case trailing slash wasn't present there
-        // now grab every link from the navigation
+        urlRegExp = new RegExp(url.replace(/\/$/,'') + "$");
         if(window.location == '{{URL::base()}}')
         {
         $('#navigation-{{$block->id}} li a')
@@ -51,7 +50,7 @@ $(document).ready(function() {
         }
        else{
         $('#navigation-{{$block->id}} a').each(function(){
-            // and test its normalized href against the url pathname regexp
+          
             if(urlRegExp.test(this.href)){
                 $(this).addClass('selected');
                 $(this).parent().attr('class', 'selected-path');

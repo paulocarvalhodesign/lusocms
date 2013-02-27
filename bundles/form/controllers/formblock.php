@@ -35,9 +35,8 @@ class Form_Formblock_Controller extends Base_Controller {
 
         $user = Auth::user();
         if($user){
-        $user_role = db::table('role_user')->where_role_id($user->id)->first(); 
-        $this->permitions = Permitions::administrator($user_role->role_id);
-        Config::set('permitions', $this->permitions); 
+     
+        
         $settings = DB::table('settings')->get();
         foreach($settings as $setting)
         Config::set($setting->name, $setting->value);

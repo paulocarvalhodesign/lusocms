@@ -18,7 +18,7 @@
          <div class="span12">
         <div class="span4"></div>  
         <div class="span4">
-          <center><h3 class="cms_logo"><img width="25" src="<?php echo url('cms_core/public/global/img/icon.png');?>"> LUSO CMS</h3></center>
+          <center><h3 class="cms_logo"><img width="25" src="<?php echo url('cms_core/lusocms/public/global/img/icon.png');?>"> LUSO CMS</h3></center>
         </div>  
          <div class="span4"></div>  
         </div>
@@ -30,21 +30,17 @@
 
         <?php 
         $folder = path('root').'cms_config';
-        $database_file = path('app').'config/database.php'; 
+        
         $folder = is_writable($folder);
-        $db = is_writable($database_file);
+       
 
         ?>
 
-         @if(!$db) 
-        
-         <p class="write_error">database.php must be writable.</p>
-        
-         @endif
+         
 
          @if(!$folder) 
         
-         <p class="write_error">cms_config/ must be writable.</p>
+         <p class="write_error"> ./cms_config/ folder must be writable.</p>
         
          @endif
         

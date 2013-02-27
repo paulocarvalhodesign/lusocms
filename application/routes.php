@@ -56,73 +56,80 @@
     Route::group(array('before' => 'auth'), function()
     {
 
-    
+     // users Routes
+    Route::post('users/update', array('uses'=>'users@update'));
+    Route::get('users', array('uses'=>'users@index'));
+    Route::post('users/new', array('uses'=>'users@new'));
+    Route::get('users/delete/(:num)', array('uses'=>'users@delete'));  
+
+    Route::group(array('before' => 'subscriber'), function()
+    {
 
     // Dashboard Routes
-    Route::get('admin', array('before' => 'subscriber','uses'=>'admin@index'));
-    Route::get('admin/cms_upgrade_download', array('before' => 'subscriber','uses'=>'admin@cms_upgrade_download'));
-    Route::get('admin/finish_upgrade', array('before' => 'subscriber','uses'=>'admin@finish_upgrade'));
+    Route::get('admin', array('uses'=>'admin@index'));
+    Route::get('admin/cms_upgrade_download', array('uses'=>'admin@cms_upgrade_download'));
+    Route::get('admin/finish_upgrade', array('uses'=>'admin@finish_upgrade'));
     
     
     // Files Routes
-    Route::get('files', array('before' => 'subscriber','uses'=>'files@index'));
-    Route::get('files/sets', array('before' => 'subscriber','uses'=>'files@sets'));
-    Route::post('files/sets', array('before' => 'subscriber','uses'=>'files@sets'));
-    Route::get('files/manage_set/(:num)', array('before' => 'subscriber','uses'=>'files@sets'));
-    Route::post('files/upload', array('before' => 'subscriber','uses'=>'files@upload'));
-    Route::post('files/multi_upload', array('before' => 'subscriber','uses'=>'files@multi_upload'));
-    Route::get('files/delete_file/(:num)',array('before' => 'subscriber','uses'=>'files@delete_file'));
-    Route::get('files/delete_set/(:num)',array('before' => 'subscriber','uses'=>'files@delete_set'));
-    Route::get('files/remove_from_set/(:num)',array('before' => 'subscriber','uses'=>'files@remove_from_set'));
-    Route::post('files/save_properties',array('before' => 'subscriber','uses'=>'files@save_properties'));
-    Route::post('files/add_to_set',array('before' => 'subscriber','uses'=>'files@add_to_set'));
-    Route::post('files/reorder_set',array('before' => 'subscriber','uses'=>'files@reorder_set'));
+    Route::get('files', array('uses'=>'files@index'));
+    Route::get('files/sets', array('uses'=>'files@sets'));
+    Route::post('files/sets', array('uses'=>'files@sets'));
+    Route::get('files/manage_set/(:num)', array('uses'=>'files@sets'));
+    Route::post('files/upload', array('uses'=>'files@upload'));
+    Route::post('files/multi_upload', array('uses'=>'files@multi_upload'));
+    Route::get('files/delete_file/(:num)',array('uses'=>'files@delete_file'));
+    Route::get('files/delete_set/(:num)',array('uses'=>'files@delete_set'));
+    Route::get('files/remove_from_set/(:num)',array('uses'=>'files@remove_from_set'));
+    Route::post('files/save_properties',array('uses'=>'files@save_properties'));
+    Route::post('files/add_to_set',array('uses'=>'files@add_to_set'));
+    Route::post('files/reorder_set',array('uses'=>'files@reorder_set'));
    
    // Pages Routes
-    Route::get('pages', array('before' => 'subscriber','uses'=>'pages@index'));
-    Route::get('pages/new', array('before' => 'subscriber','uses'=>'pages@new'));
-    Route::post('pages/new', array('before' => 'subscriber','uses'=>'pages@new'));
-    Route::get('pages/composer', array('before' => 'subscriber','uses'=>'pages@composer'));
-    Route::post('pages/composer', array('before' => 'subscriber','uses'=>'pages@composer'));
-    Route::get('pages/composer_groups', array('before' => 'subscriber','uses'=>'pages@composer_groups'));
-    Route::post('pages/composer_groups', array('before' => 'subscriber','uses'=>'pages@composer_groups'));
-    Route::post('pages/update_page', array('before' => 'subscriber','uses'=>'pages@update_page'));
-    Route::get('pages/attributes', array('before' => 'subscriber','uses'=>'pages@attributes'));
-    Route::post('pages/save_page_atributes', array('before' => 'subscriber','uses'=>'pages@save_page_atributes'));
-    Route::get('pages/manage/(:num)',array('before' => 'subscriber','uses'=>'pages@manage'));
-    Route::get('pages/delete/(:num)',array('before' => 'subscriber','uses'=>'pages@delete'));
-    Route::post('pages/add_attribute',array('before' => 'subscriber','uses'=>'pages@add_attribute'));
-    Route::post('pages/edit_attribute/(:num)',array('before' => 'subscriber','uses'=>'pages@edit_attribute'));
-    Route::get('pages/delete_attribute/(:num)', array('before' => 'subscriber','uses'=>'pages@delete_attribute'));
-    Route::post('pages/order', array('before' => 'subscriber','uses'=>'pages@order'));
+    Route::get('pages', array('uses'=>'pages@index'));
+    Route::get('pages/new', array('uses'=>'pages@new'));
+    Route::post('pages/new', array('uses'=>'pages@new'));
+    Route::get('pages/composer', array('uses'=>'pages@composer'));
+    Route::post('pages/composer', array('uses'=>'pages@composer'));
+    Route::get('pages/composer_groups', array('uses'=>'pages@composer_groups'));
+    Route::post('pages/composer_groups', array('uses'=>'pages@composer_groups'));
+    Route::post('pages/update_page', array('uses'=>'pages@update_page'));
+    Route::get('pages/attributes', array('uses'=>'pages@attributes'));
+    Route::post('pages/save_page_atributes', array('uses'=>'pages@save_page_atributes'));
+    Route::get('pages/manage/(:num)',array('uses'=>'pages@manage'));
+    Route::get('pages/delete/(:num)',array('uses'=>'pages@delete'));
+    Route::post('pages/add_attribute',array('uses'=>'pages@add_attribute'));
+    Route::post('pages/edit_attribute/(:num)',array('uses'=>'pages@edit_attribute'));
+    Route::get('pages/delete_attribute/(:num)', array('uses'=>'pages@delete_attribute'));
+    Route::post('pages/order', array('uses'=>'pages@order'));
    
     // Blocks Routes
-    Route::get('blocks', array('before' => 'subscriber','uses'=>'blocks@index'));
-    Route::get('blocks/(:any)', array('before' => 'subscriber','uses'=>'blocks@index'));
-    Route::get('editblock', array('before' => 'subscriber','uses'=>'editblock@index'));
-    Route::get('moveblock', array('before' => 'subscriber','uses'=>'moveblock@index'));  
-    Route::post('blocks/reorder',array('before' => 'subscriber','uses'=>'blocks@reorder'));
+    Route::get('blocks', array('uses'=>'blocks@index'));
+    Route::get('blocks/(:any)', array('uses'=>'blocks@index'));
+    Route::get('editblock', array('uses'=>'editblock@index'));
+    Route::get('moveblock', array('uses'=>'moveblock@index'));  
+    Route::post('blocks/reorder',array('uses'=>'blocks@reorder'));
 
-    // Route::group(array('before' => 'administrator'), function()
-    // {
+    Route::group(array('before' => 'administrator'), function()
+    {
     // Settings Routes
-    Route::get('settings', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@index'));
-    Route::post('settings/maintenance', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@maintenance'));
-    Route::post('settings/error_level', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@error_level'));
-    Route::post('settings/analytics', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@analytics'));
-    Route::post('settings/sitename', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@sitename'));
-    Route::post('settings/language', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@language'));
-    Route::post('settings/theme', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@theme'));
-    Route::post('settings/theme_install', array('before' => 'administrator','before' => 'subscriber','uses'=>'settings@theme_install'));
+    Route::get('settings', array('uses'=>'settings@index'));
+    Route::post('settings/maintenance', array('uses'=>'settings@maintenance'));
+    Route::post('settings/error_level', array('uses'=>'settings@error_level'));
+    Route::post('settings/analytics', array('uses'=>'settings@analytics'));
+    Route::post('settings/sitename', array('uses'=>'settings@sitename'));
+    Route::post('settings/language', array('uses'=>'settings@language'));
+    Route::post('settings/theme', array('uses'=>'settings@theme'));
+    Route::post('settings/theme_install', array('uses'=>'settings@theme_install'));
     
     
      // Extensions Routes
-    Route::get('extensions', array('before' => 'administrator','before' => 'subscriber','uses'=>'extensions@index'));
+    Route::get('extensions', array('uses'=>'extensions@index'));
     
-  
+    });
 
-    Route::get('edit/(:num)',array('before' => 'subscriber','uses'=>'edit@index'));
-    Route::get('edit/publish/(:num)',array('before' => 'subscriber','uses'=>'edit@publish'));
+    Route::get('edit/(:num)',array('uses'=>'edit@index'));
+    Route::get('edit/publish/(:num)',array('uses'=>'edit@publish'));
 
     
 
@@ -151,15 +158,11 @@
         $page = Page::find($page_id);
         return Redirect::to($page->route);
 
-
+    });
 
   });
 
-    // users Routes
-    Route::post('users/update', array('uses'=>'users@update'));
-    Route::get('users', array('uses'=>'users@index'));
-    Route::post('users/new', array('before' => 'subscriber','uses'=>'users@new'));
-    Route::get('users/delete/(:num)', array('before' => 'subscriber','uses'=>'users@delete'));
+   
  
 
  });//end of auth group
@@ -539,12 +542,13 @@ Route::filter('before', function()
 
 
     } 
-    $user = Auth::user();
-    if(!empty($user)){
-    $user_role = db::table('role_user')->where_role_id($user->id)->first(); 
-    $permitions = Permitions::administrator($user_role->role_id);
-    Config::set('permitions', $permitions); 
-   }
+        $user = Auth::user();
+      
+        if(!empty($user)){
+        $user_role = db::table('role_user')->where_user_id($user->id)->first(); 
+        $permitions = Permitions::administrator($user_role->role_id);
+        Config::set('permitions', $permitions); 
+       }
   
     });
 
@@ -558,11 +562,12 @@ Route::filter('profiler', function()
 });
 Route::filter('subscriber', function()
 {
-      $user = Auth::user();
-      if(!Permitions::Administrator($user) && !Permitions::Author($user))  
+      
 
-        return Redirect::to('users');
-  
+     if(Permitions::Subscriber())
+
+       return Redirect::to('users');
+     
 });
 
 
